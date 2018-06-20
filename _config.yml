@@ -1,5 +1,5 @@
 title: ltltlt's blog
 description: ltltlt's personal blog.
-show_downloads: true
+show_downloads: false
 google_analytics:
 theme: jekyll-theme-architect
