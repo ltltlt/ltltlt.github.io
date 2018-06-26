@@ -3,7 +3,7 @@ layout: default
 ---
 
 # Welcome
-Not sure what to say, hello world then.
+Low-key, calm, continuous
 
 ## Some code to prove i am a programmer
 
