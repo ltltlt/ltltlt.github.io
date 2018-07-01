@@ -3,7 +3,7 @@ layout: default
 ---
 
 # Welcome
-Low-key, calm, continuous
+Low-key, calm and continuous
 
 ## Some code to prove i am a programmer
 
@@ -19,7 +19,7 @@ func main(){
 ```
 
 ---
-## A poem a day, keeps silly away.
+## A poem a day, keeps foolish away.
 > On Death  
 > Can death be sleep, when life is but a dream.  
  And scenes of bliss pass as a phantom by?  
