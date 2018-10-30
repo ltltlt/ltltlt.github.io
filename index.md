@@ -20,10 +20,20 @@ func main(){
 
 ---
 ## A poem a day, keeps foolish away.
-> On Death  
-> Can death be sleep, when life is but a dream.  
- And scenes of bliss pass as a phantom by?  
- The transient pleasures as a vision seem,  
- And yet we think the greatest pain's to die.  
- ---<cite>John Keats</cite>
+> For whom the bell tolls   
+> No man is an island,   
+Entire of itself.   
+Each is a piece of the continent,   
+A part of the main.   
+If a clod be washed away by the sea,   
+Motherland is the less.   
+As well as if a promontory were.   
+As well as if a manner of thine own   
+Or of thine friend's were.   
+Each man's death diminishes me,   
+For I am involved in mankind.   
+Therefore, send not to know   
+For whom the bell tolls,   
+It tolls for thee.   
+---<cite>John Donne</cite>
 ---
