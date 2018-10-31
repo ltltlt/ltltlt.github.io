@@ -39,16 +39,15 @@ def save(title, author, body):
 def main():
     title, author, body = get_input()
 
-    format_ = r'''
-    ---
-    ## A poem a day, keeps foolish away.
-    > {}
-    > {}
-    ---<cite>{}</cite>
-    ---
+    format_ = '''
+---
+## A poem a day, keeps foolish away.
+> {}
+> {}
+---<cite>{}</cite>
+---
     '''.strip()
-    format_ = r'\n'.join(l.strip() for l in format_.split('\n'))
-    r = re.compile(format_.format(r'([^\n]*?)', r'([\s\S]*?)', r'([^>]*?)'))
+    r = re.compile(format_.format('([^\\n]*?)', '([\\s\\S]*?)', '([^>]*?)'))
     with open(file) as f:
         content = f.read()
     matches = r.search(content)
