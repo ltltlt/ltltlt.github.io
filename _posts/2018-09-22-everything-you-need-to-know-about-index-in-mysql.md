@@ -69,7 +69,7 @@ categories: MySQL
   * where子句的各部分顺序不影响实际执行速度。
 
 # 参考资料
-* [1] <<高性能MySQL>> 第三版
-* [2] https://dev.mysql.com/doc/refman/5.6/en/index-condition-pushdown-optimization.html
-* [3] https://mariadb.com/kb/en/library/index-condition-pushdown/
-* [4] http://hedengcheng.com/?p=577
+* <<高性能MySQL>> 第三版
+* [MySQL 官方文档](https://dev.mysql.com/doc/refman/5.6/en/index-condition-pushdown-optimization.html)
+* [MariaDB 关于ICP的描述](https://mariadb.com/kb/en/library/index-condition-pushdown/)
+* [何登成的博客](http://hedengcheng.com/?p=577)

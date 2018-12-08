@@ -145,5 +145,5 @@ server {
   这是因为默认的rewrite指令不会跳过其他ngx_http_rewrite_module的指令。
 
 # 参考资料
-* [1] https://openresty.org/download/agentzh-nginx-tutorials-zhcn.html
-* [2] http://nginx.org/en/docs/http/ngx_http_rewrite_module.html
+* [agentzh's nginx tutorials](https://openresty.org/download/agentzh-nginx-tutorials-zhcn.html)
+* [nginx official docs](http://nginx.org/en/docs/http/ngx_http_rewrite_module.html)
