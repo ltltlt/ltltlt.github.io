@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Nginx rewrite: last, break or default - ltltlt&#39;s blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="ltltlt" /><meta name="description" content="前言 最近了解了一些nginx的知识，上网查看了一些资料，特此做一些分享。
+" /><meta name="keywords" content="ltltlt, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.56.0-DEV with even 4.0.0" />
+
+
+<link rel="canonical" href="https://ltltlt.github.io/post/nginx-rewrite-last-break-or-default/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script src="https://cdn.jsdelivr.net/npm/eruda@1.2.6/eruda.min.js" integrity="sha256-Jmz4bc3kp+rRrXX2tGadNBKFLwtzMapr8kHABxSAAP8=" crossorigin="anonymous"></script>
+<script>eruda.init();</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Nginx rewrite: last, break or default" />
+<meta property="og:description" content="前言
+
+最近了解了一些nginx的知识，上网查看了一些资料，特此做一些分享。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ltltlt.github.io/post/nginx-rewrite-last-break-or-default/" />
+<meta property="article:published_time" content="2018-11-03T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-11-03T00:00:00+00:00" />
+
+<meta itemprop="name" content="Nginx rewrite: last, break or default">
+<meta itemprop="description" content="前言
+
+最近了解了一些nginx的知识，上网查看了一些资料，特此做一些分享。">
+
+
+<meta itemprop="datePublished" content="2018-11-03T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2018-11-03T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="2658">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Nginx rewrite: last, break or default"/>
+<meta name="twitter:description" content="前言
+
+最近了解了一些nginx的知识，上网查看了一些资料，特此做一些分享。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Even</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/poem/">
+        <li class="mobile-menu-item">Poems</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Even</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/poem/">Poems</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Nginx rewrite: last, break or default</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-11-03 </span>
+        <div class="post-category">
+            <a href="/categories/nginx/"> Nginx </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#前言">前言</a></li>
+<li><a href="#预备知识">预备知识</a></li>
+<li><a href="#rewrite指令中默认-last和break的区别">rewrite指令中默认，last和break的区别</a></li>
+<li><a href="#例子证明">例子证明</a>
+<ul>
+<li><a href="#break">break</a></li>
+<li><a href="#last">last</a></li>
+<li><a href="#empty">empty</a></li>
+</ul></li>
+<li><a href="#参考资料">参考资料</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="前言">前言</h2>
+
+<p>最近了解了一些nginx的知识，上网查看了一些资料，特此做一些分享。</p>
+
+<p>这篇博客不会特别说到nginx配置的执行过程和nginx里的变量，如果有需要了解，可参考:
+  <a href="https://openresty.org/download/agentzh-nginx-tutorials-zhcn.html">agentzh 的 Nginx 教程</a>。<br />
+  这篇博客里的许多推导也来自上面的链接，如果有误，请与我联系。</p>
+
+<h2 id="预备知识">预备知识</h2>
+
+<ol>
+<li>首先明确一点，rewrite指令来自ngx_http_rewrite_module，此模块中的所有指令若是在server块内location块外，会执行于server-rewrite阶段；如果位于location块内，会执行于rewrite阶段。此模块中的所有指令都不会执行在其他阶段。</li>
+
+<li><p>nginx执行阶段如下所示：</p>
+
+<ul>
+<li>post-read</li>
+<li>server-rewrite</li>
+<li>find-config</li>
+<li>rewrite</li>
+<li>post-rewrite</li>
+<li>preaccess</li>
+<li>access</li>
+<li>post-access</li>
+<li>try-files</li>
+<li>content</li>
+<li>log</li>
+</ul></li>
+
+<li><p>不同的模块在同一阶段中执行的顺序不定，同一阶段中的rewrite指令执行顺序是确定的，这是由于其都在同一个模块ngx_http_rewrite_module中定义。rewrite阶段的一些指令是顺序执行，即使属于不同模块，这是这些第三方模块将指令注入ngx_http_rewrite_module中实现的。</p></li>
+
+<li><p>内部跳转是发生在post-rewrite阶段而不是rewrite阶段，并且是跳到find-config阶段重新匹配location块。</p></li>
+
+<li><p>ngx_http_rewrite_module中的指令break的作用是停止处理此阶段中其他ngx_http_rewrite_module模块中的的指令（但不会停止处理此phase中其他模块中的指令，除非指令是嵌入到ngx_http_rewrite_module模块中执行的）。</p></li>
+
+<li><p>rewrite指令中，last，break和rewrite都不会修改浏览器地址栏，只有回送3xx给浏览器且设置了location header才会修改，也就是说permanent与redirect会修改。</p></li>
+</ol>
+
+<h2 id="rewrite指令中默认-last和break的区别">rewrite指令中默认，last和break的区别</h2>
+
+<p>last和break都会跳过此阶段中其他ngx_http_rewrite_module中的指令（directive），而rewrite指令默认不会跳过任何指令。
+  last，break和默认都会重写(rewrite) $uri 这个预定义变量为新写入的uri，而不会修改 $request_uri 这个变量，这是因为 $request_uri 这个变量是不可写的，总是包含客户端一开始请求的uri，而 $uri 这个变量总是包含当前实时的uri。<br />
+  last会使得在post-rewrite阶段，会跳到find-config阶段重新匹配location，而break不会。<br />
+  <code>nginx a b break；</code> 相当于 <code>nginx a b；break；</code> 。<br />
+  如果rewrite指令位于server块内location块外，那么last和break没有区别。这是因为这两条指令都会跳过ngx_http_rewrite_module模块在此阶段的其他指令，而且都会修改uri，最后都得执行find-config，而find-config是根据uri进行location匹配的。<br />
+  在location块内，写last需要小心，因为之后在post-rewrite会跳到find-config阶段，如果操作不慎会死循环，而nginx在10次循环后会直接返回500。如下例所示（例子修改自<a href="http://nginx.org/en/docs/http/ngx_http_rewrite_module.html#rewrite">ngx_http_rewrite_module官方文档</a>）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-nginx" data-lang="nginx"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">location</span> <span class="s">/download/</span> <span class="p">{</span>
+    <span class="kn">rewrite</span> <span class="s">^(/download/.*)/media/(.*)\..*</span>$ <span class="nv">$1/mp3/$2.mp3</span> <span class="s">last</span><span class="p">;</span>
+    <span class="kn">rewrite</span> <span class="s">^(/download/.*)/audio/(.*)\..*</span>$ <span class="nv">$1/mp3/$2.ra</span>  <span class="s">last</span><span class="p">;</span>
+    <span class="kn">return</span>  <span class="mi">403</span><span class="p">;</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="例子证明">例子证明</h2>
+
+<p>如果读者想要复现，请使用openresty（我是这么做的）或者自己安装一些第三方模块。</p>
+
+<h3 id="break">break</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-nginx" data-lang="nginx"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">server</span> <span class="p">{</span>
+    <span class="c1"># ...
+</span><span class="c1"></span>    <span class="kn">listen</span> <span class="mi">8080</span><span class="p">;</span>
+    <span class="kn">default_type</span> <span class="s">text/plain</span><span class="p">;</span>
+    <span class="kn">location</span> <span class="p">=</span> <span class="s">/</span> <span class="p">{</span>
+        <span class="kn">echo</span> <span class="s">&#34;var</span> <span class="s">is:</span> <span class="nv">$var&#34;</span><span class="p">;</span>
+        <span class="kn">echo</span> <span class="s">&#34;var1</span> <span class="s">is:</span> <span class="nv">$var1&#34;</span><span class="p">;</span>
+        <span class="kn">echo</span> <span class="s">&#34;uri</span> <span class="s">is:</span> <span class="nv">$uri&#34;</span><span class="p">;</span>
+        <span class="kn">echo</span> <span class="s">&#34;request_uri</span> <span class="s">is:</span> <span class="nv">$request_uri&#34;</span><span class="p">;</span>
+        <span class="kn">set</span> <span class="nv">$var</span> <span class="s">abc</span><span class="p">;</span>
+        <span class="kn">set</span> <span class="nv">$var1</span> <span class="s">abc</span><span class="p">;</span>
+        <span class="kn">rewrite</span> <span class="s">^</span> <span class="s">/foo</span> <span class="s">break</span><span class="p">;</span>
+        <span class="kn">set_by_lua</span> <span class="s">&#34;ngx.var.var=&#39;bcd&#39;&#34;</span><span class="p">;</span>
+        <span class="kn">rewrite_by_lua</span> <span class="s">&#34;ngx.var.var1=&#39;bcd&#39;&#34;</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kn">location</span> <span class="p">=</span> <span class="s">/foo</span> <span class="p">{</span>
+        <span class="kn">echo</span> <span class="s">&#34;foo&#34;</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>访问localhost:8080会得到:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-markup" data-lang="markup"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markup" data-lang="markup">  var is: abc
+  var1 is: bcd
+  uri is: /foo
+  request_uri is: /</code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>可以看出rewrite指令确实成功重写了uri，但不会影响request_uri。<code>rewrite ... break</code> 指令并不会跳到其他location（即不会重新执行find-config阶段）。</li>
+<li>var变量的值为abc而不是空，是因为echo指令在content阶段执行，晚于rewrite，所以即使此指令写在前面，也会晚于rewrite阶段的指令执行。</li>
+<li>var变量的值不是 <code>set_by_lua</code> 指定的bcd是因为 <code>rewrite ... break;</code> 跳过了剩下的rewrite模块中的指令，虽然set_by_lua指令并不在rewrite模块中，但其作者为了使此指令能与ngx_http_rewrite_module模块中定义的指令顺序执行而不是随机执行，将其指令“注入”到了ngx_http_rewrite_module模块的指令序列中，所以 <code>set_by_lua</code> 指令也被break所跳过。下面一段引用自<a href="https://openresty.org/download/agentzh-nginx-tutorials-zhcn.html#02-NginxDirectiveExecOrder05">agentzsh 的 Nginx 教程</a>:
+&gt; 标准 ngx_rewrite 模块的应用是如此广泛，所以能够和它的配置指令混合使用的第三方模块是幸运的。事实上，上面提到的这些第三方模块都采用了特殊的技术，将它们自己的配置指令“注入”到了 ngx_rewrite 模块的指令序列中（它们都借助了 Marcus Clyne 编写的第三方模块 ngx_devel_kit）。换句话说，更多常规的在 Nginx 的 rewrite 阶段注册和运行指令的第三方模块就没那么幸运了。这些“常规模块”的指令虽然也运行在 rewrite 阶段，但其配置指令和 ngx_rewrite 模块（以及同一阶段内的其他模块）都是分开独立执行的。在运行时，不同模块的配置指令集之间的先后顺序一般是不确定的（严格来说，一般是由模块的加载顺序决定的，但也有例外的情况）。比如 A 和 B 两个模块都在 rewrite 阶段运行指令，于是要么是 A 模块的所有指令全部执行完再执行 B 模块的那些指令，要么就是反过来，把 B 的指令全部执行完，再去运行 A 的指令。除非模块的文档中有明确的交待，否则用户一般不应编写依赖于此种不确定顺序的配置。</li>
+<li>var1变量的值成功更新: 这是因为指令 <code>rewrite_by_lua</code> 不是注入到ngx_http_rewrite_module中执行，而是总在rewrite阶段的最后执行，这说明了 <code>rewrite ... break;</code> 指令并不会直接跳到post-rewrite阶段，而是继续执行rewrite阶段中不属于ngx_http_rewrite_module模块的指令。</li>
+</ul>
+
+<hr />
+
+<h3 id="last">last</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-nginx" data-lang="nginx"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">server</span> <span class="p">{</span>
+    <span class="c1"># ...
+</span><span class="c1"></span>    <span class="kn">listen</span> <span class="mi">8080</span><span class="p">;</span>
+    <span class="kn">default_type</span> <span class="s">text/plain</span><span class="p">;</span>
+    <span class="kn">location</span> <span class="p">=</span> <span class="s">/</span> <span class="p">{</span>
+        <span class="kn">rewrite</span> <span class="s">^</span> <span class="s">/foo</span> <span class="s">last</span><span class="p">;</span>
+        <span class="kn">rewrite</span> <span class="s">^</span> <span class="s">/bar</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kn">location</span> <span class="p">=</span> <span class="s">/foo</span> <span class="p">{</span>
+        <span class="kn">echo</span> <span class="s">&#34;foo&#34;</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kn">location</span> <span class="p">=</span> <span class="s">/bar</span> <span class="p">{</span>
+        <span class="kn">echo</span> <span class="s">&#34;bar&#34;</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>访问localhost:8080得到：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-markup" data-lang="markup"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markup" data-lang="markup">  foo</code></pre></td></tr></table>
+</div>
+</div>
+<p>可以看出，第一条 <code>rewrite ... last</code> 跳过了第二条rewrite，所以最后的uri是/foo。</p>
+
+<hr />
+
+<h3 id="empty">empty</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-nginx" data-lang="nginx"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-nginx" data-lang="nginx">    <span class="k">server</span> <span class="p">{</span>
+        <span class="c1"># ...
+</span><span class="c1"></span>        <span class="kn">listen</span> <span class="mi">8080</span><span class="p">;</span>
+        <span class="kn">default_type</span> <span class="s">text/plain</span><span class="p">;</span>
+        <span class="kn">location</span> <span class="p">=</span> <span class="s">/</span> <span class="p">{</span>
+            <span class="kn">rewrite</span> <span class="s">^</span> <span class="s">/foo</span><span class="p">;</span>
+            <span class="kn">rewrite</span> <span class="s">^</span> <span class="s">/bar</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="kn">location</span> <span class="p">=</span> <span class="s">/foo</span> <span class="p">{</span>
+            <span class="kn">echo</span> <span class="s">&#34;foo&#34;</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="kn">location</span> <span class="p">=</span> <span class="s">/bar</span> <span class="p">{</span>
+            <span class="kn">echo</span> <span class="s">&#34;bar&#34;</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>访问localhost:8080得到：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-markup" data-lang="markup"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markup" data-lang="markup">  bar</code></pre></td></tr></table>
+</div>
+</div>
+<p>这是因为默认的rewrite指令不会跳过其他ngx_http_rewrite_module的指令。</p>
+
+<h2 id="参考资料">参考资料</h2>
+
+<ul>
+<li><a href="https://openresty.org/download/agentzh-nginx-tutorials-zhcn.html">agentzh&rsquo;s nginx tutorials</a></li>
+<li><a href="http://nginx.org/en/docs/http/ngx_http_rewrite_module.html">nginx official docs</a></li>
+</ul>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">ltltlt</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-11-03
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/different-program-use-different-net-link-under-linux/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Different program use different net link under Linux</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/everything-you-need-to-know-about-index-in-mysql/">
+            <span class="next-text nav-default">Everything you need to know about index in MySQL</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'ltltlt-github-io';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="liuty196888@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://stackoverflow.com/users/5020243/lty" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="https://github.com/ltltlt" class="iconfont icon-github" title="github"></a>
+  <a href="https://ltltlt.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">ltltlt</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

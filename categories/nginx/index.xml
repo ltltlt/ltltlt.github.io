@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nginx on ltltlt&#39;s blog</title>
+    <link>https://ltltlt.github.io/categories/nginx/</link>
+    <description>Recent content in Nginx on ltltlt&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 08 Dec 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://ltltlt.github.io/categories/nginx/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Different program use different net link under Linux</title>
+      <link>https://ltltlt.github.io/post/different-program-use-different-net-link-under-linux/</link>
+      <pubDate>Sat, 08 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://ltltlt.github.io/post/different-program-use-different-net-link-under-linux/</guid>
+      <description>&lt;h2 id=&#34;why&#34;&gt;Why&lt;/h2&gt;
+
+&lt;p&gt;Sometimes, you may want your program use one specific net device, because your net devices have different network access abilities.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Nginx rewrite: last, break or default</title>
+      <link>https://ltltlt.github.io/post/nginx-rewrite-last-break-or-default/</link>
+      <pubDate>Sat, 03 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://ltltlt.github.io/post/nginx-rewrite-last-break-or-default/</guid>
+      <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+
+&lt;p&gt;最近了解了一些nginx的知识，上网查看了一些资料，特此做一些分享。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

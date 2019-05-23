@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Poems on ltltlt&#39;s blog</title>
+    <link>https://ltltlt.github.io/poem/</link>
+    <description>Recent content in Poems on ltltlt&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 20 May 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://ltltlt.github.io/poem/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>On Death</title>
+      <link>https://ltltlt.github.io/poem/on-death/</link>
+      <pubDate>Mon, 20 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://ltltlt.github.io/poem/on-death/</guid>
+      <description> On Death by John Keats  Can death be sleep, when life is but a dream.
+And scenes of bliss pass as a phantom by?
+The transient pleasures as a vision seem,
+And yet we think the greatest pain&amp;rsquo;s to die.
+ </description>
+    </item>
+    
+  </channel>
+</rss>

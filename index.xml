@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ltltlt&#39;s blog</title>
+    <link>https://ltltlt.github.io/</link>
+    <description>Recent content on ltltlt&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 20 May 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://ltltlt.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>On Death</title>
+      <link>https://ltltlt.github.io/poem/on-death/</link>
+      <pubDate>Mon, 20 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://ltltlt.github.io/poem/on-death/</guid>
+      <description> On Death by John Keats  Can death be sleep, when life is but a dream.
+And scenes of bliss pass as a phantom by?
+The transient pleasures as a vision seem,
+And yet we think the greatest pain&amp;rsquo;s to die.
+ </description>
+    </item>
+    
+    <item>
+      <title>Different program use different net link under Linux</title>
+      <link>https://ltltlt.github.io/post/different-program-use-different-net-link-under-linux/</link>
+      <pubDate>Sat, 08 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://ltltlt.github.io/post/different-program-use-different-net-link-under-linux/</guid>
+      <description>&lt;h2 id=&#34;why&#34;&gt;Why&lt;/h2&gt;
+
+&lt;p&gt;Sometimes, you may want your program use one specific net device, because your net devices have different network access abilities.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Nginx rewrite: last, break or default</title>
+      <link>https://ltltlt.github.io/post/nginx-rewrite-last-break-or-default/</link>
+      <pubDate>Sat, 03 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://ltltlt.github.io/post/nginx-rewrite-last-break-or-default/</guid>
+      <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+
+&lt;p&gt;最近了解了一些nginx的知识，上网查看了一些资料，特此做一些分享。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Everything you need to know about index in MySQL</title>
+      <link>https://ltltlt.github.io/post/everything-you-need-to-know-about-index-in-mysql/</link>
+      <pubDate>Sat, 22 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://ltltlt.github.io/post/everything-you-need-to-know-about-index-in-mysql/</guid>
+      <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+
+&lt;p&gt;索引是由存储引擎实现的一种快速查找数据的结构，不同存储引擎对索引的实现和支持不同。其不仅能影响到select语句，也能影响到insert语句和drop语句。不仅能影响到查询的where部分，也能影响到select部分，group by部分以及order by部分.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://ltltlt.github.io/about/about/</link>
+      <pubDate>Thu, 21 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://ltltlt.github.io/about/about/</guid>
+      <description> About me  Age  22  From  Beijing, China  Prefered language  Golang, Python  Computer  ChromeBook  Editor  Vim Visual Studio Code   About this blog  Purpose  Writing down my feeling about this world. Writing down some technic i would like to share. Writing down some experience.  When i start  2018-06-20   </description>
+    </item>
+    
+  </channel>
+</rss>
