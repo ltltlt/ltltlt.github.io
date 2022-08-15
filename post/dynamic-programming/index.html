@@ -5,12 +5,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>Abouts | ltltlt&#39;s blog</title>
+<title>Dynamic Programming Problems | ltltlt&#39;s blog</title>
 <meta name="keywords" content="">
-<meta name="description" content="Abouts - ltltlt&#39;s blog">
+<meta name="description" content=" max sum of consecutive number in an array [5, -1, 3, -5, 2] =&gt; 5&#43;-1&#43;3=7 O(n) dp, O(n log n) divide and conquer Longest common substring in two string &ldquo;abcdef&rdquo; &ldquo;ade&rdquo; =&gt; &ldquo;de&rdquo; O(n^2) dp Longest common subsequence in two string &ldquo;abcdef&rdquo; &ldquo;ade&rdquo; =&gt; &ldquo;ade&rdquo; O(n^2) dp ">
 <meta name="author" content="">
-<link rel="canonical" href="https://ltltlt.github.io/about/">
+<link rel="canonical" href="https://ltltlt.github.io/post/dynamic-programming/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.3299c596a7007118365635c056dd427dace22b7b8c1341fdef6fa6c31359ba10.css" integrity="sha256-MpnFlqcAcRg2VjXAVt1CfaziK3uME0H972&#43;mwxNZuhA=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.acb54fd32bbc1982428b8850317e45d076b95012730a5936667e6bc21777692a.js" integrity="sha256-rLVP0yu8GYJCi4hQMX5F0Ha5UBJzClk2Zn5rwhd3aSo="
+    onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://ltltlt.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://ltltlt.github.io/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://ltltlt.github.io/favicon-32x32.png">
@@ -18,7 +20,6 @@
 <link rel="mask-icon" href="https://ltltlt.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="https://ltltlt.github.io/about/index.xml">
 <noscript>
     <style>
         #theme-toggle,
@@ -55,14 +56,16 @@
         }
 
     </style>
-</noscript><meta property="og:title" content="Abouts" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://ltltlt.github.io/about/" />
+</noscript><meta property="og:title" content="Dynamic Programming Problems" />
+<meta property="og:description" content=" max sum of consecutive number in an array [5, -1, 3, -5, 2] =&gt; 5&#43;-1&#43;3=7 O(n) dp, O(n log n) divide and conquer Longest common substring in two string &ldquo;abcdef&rdquo; &ldquo;ade&rdquo; =&gt; &ldquo;de&rdquo; O(n^2) dp Longest common subsequence in two string &ldquo;abcdef&rdquo; &ldquo;ade&rdquo; =&gt; &ldquo;ade&rdquo; O(n^2) dp " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ltltlt.github.io/post/dynamic-programming/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-01-23T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2022-01-23T00:00:00&#43;00:00" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Abouts"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:title" content="Dynamic Programming Problems"/>
+<meta name="twitter:description" content=" max sum of consecutive number in an array [5, -1, 3, -5, 2] =&gt; 5&#43;-1&#43;3=7 O(n) dp, O(n log n) divide and conquer Longest common substring in two string &ldquo;abcdef&rdquo; &ldquo;ade&rdquo; =&gt; &ldquo;de&rdquo; O(n^2) dp Longest common subsequence in two string &ldquo;abcdef&rdquo; &ldquo;ade&rdquo; =&gt; &ldquo;ade&rdquo; O(n^2) dp "/>
 
 
 <script type="application/ld+json">
@@ -73,15 +76,50 @@
     {
       "@type": "ListItem",
       "position":  2 ,
-      "name": "Abouts",
-      "item": "https://ltltlt.github.io/about/"
+      "name": "Posts",
+      "item": "https://ltltlt.github.io/post/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Dynamic Programming Problems",
+      "item": "https://ltltlt.github.io/post/dynamic-programming/"
     }
   ]
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Dynamic Programming Problems",
+  "name": "Dynamic Programming Problems",
+  "description": " max sum of consecutive number in an array [5, -1, 3, -5, 2] =\u0026gt; 5+-1+3=7 O(n) dp, O(n log n) divide and conquer Longest common substring in two string \u0026ldquo;abcdef\u0026rdquo; \u0026ldquo;ade\u0026rdquo; =\u0026gt; \u0026ldquo;de\u0026rdquo; O(n^2) dp Longest common subsequence in two string \u0026ldquo;abcdef\u0026rdquo; \u0026ldquo;ade\u0026rdquo; =\u0026gt; \u0026ldquo;ade\u0026rdquo; O(n^2) dp ",
+  "keywords": [
+    
+  ],
+  "articleBody": " max sum of consecutive number in an array [5, -1, 3, -5, 2] =\u003e 5+-1+3=7 O(n) dp, O(n log n) divide and conquer Longest common substring in two string “abcdef” “ade” =\u003e “de” O(n^2) dp Longest common subsequence in two string “abcdef” “ade” =\u003e “ade” O(n^2) dp ",
+  "wordCount" : "47",
+  "inLanguage": "zh-cn",
+  "datePublished": "2022-01-23T00:00:00Z",
+  "dateModified": "2022-01-23T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://ltltlt.github.io/post/dynamic-programming/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "ltltlt's blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://ltltlt.github.io/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
-<body class="list" id="top">
+<body class="" id="top">
 <script>
     if (localStorage.getItem("pref-theme") === "dark") {
         document.body.classList.add('dark');
@@ -148,33 +186,43 @@
             </li>
             <li>
                 <a href="https://ltltlt.github.io/about/" title="About">
-                    <span class="active">About</span>
+                    <span>About</span>
                 </a>
             </li>
         </ul>
     </nav>
 </header>
-<main class="main"> 
-<header class="page-header">
-  <h1>
-    Abouts
-  </h1>
-</header>
+<main class="main">
 
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>About
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>About me Who
-Poet Programmer From
-Suzhou, China Computer
-ChromeBook Editor
-Vim Visual Studio Code About this blog Purpose Writing down my feeling about this world. Writing down some technic i would like to share. Writing down some experience. When i start 2018-06-20 </p>
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      Dynamic Programming Problems
+    </h1>
+    <div class="post-meta"><span title='2022-01-23 00:00:00 +0000 UTC'>January 23, 2022</span>
+
+</div>
+  </header> 
+  <div class="post-content"><ol>
+<li>max sum of consecutive number in an array
+[5, -1, 3, -5, 2] =&gt; 5+-1+3=7
+O(n) dp, O(n log n) divide and conquer</li>
+<li>Longest common substring in two string
+&ldquo;abcdef&rdquo; &ldquo;ade&rdquo; =&gt; &ldquo;de&rdquo;
+O(n^2) dp</li>
+<li>Longest common subsequence in two string
+&ldquo;abcdef&rdquo; &ldquo;ade&rdquo; =&gt; &ldquo;ade&rdquo;
+O(n^2) dp</li>
+</ol>
+
+
   </div>
-  <footer class="entry-footer"><span title='2018-06-21 00:00:00 +0000 UTC'>June 21, 2018</span></footer>
-  <a class="entry-link" aria-label="post link to About" href="https://ltltlt.github.io/about/about/"></a>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
 </article>
     </main>
     

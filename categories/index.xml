@@ -1,15 +1,29 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Categories on ltltlt&#39;s blog</title>
     <link>https://ltltlt.github.io/categories/</link>
     <description>Recent content in Categories on ltltlt&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 08 Dec 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 23 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://ltltlt.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Algorithms</title>
+      <link>https://ltltlt.github.io/categories/algorithms/</link>
+      <pubDate>Sun, 23 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://ltltlt.github.io/categories/algorithms/</guid>
+      <description></description>
+    </item>
     
-	<atom:link href="https://ltltlt.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
-    
+    <item>
+      <title>Misc</title>
+      <link>https://ltltlt.github.io/categories/misc/</link>
+      <pubDate>Sat, 01 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://ltltlt.github.io/categories/misc/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Nginx</title>

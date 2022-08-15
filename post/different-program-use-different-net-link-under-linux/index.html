@@ -1,413 +1,405 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Different program use different net link under Linux - ltltlt&#39;s blog</title>
-  <meta name="renderer" content="webkit" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<html lang="zh-cn" dir="auto">
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Different program use different net link under Linux | ltltlt&#39;s blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="Why
+Sometimes, you may want your program use one specific net device, because your net devices have different network access abilities.">
+<meta name="author" content="">
+<link rel="canonical" href="https://ltltlt.github.io/post/different-program-use-different-net-link-under-linux/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.3299c596a7007118365635c056dd427dace22b7b8c1341fdef6fa6c31359ba10.css" integrity="sha256-MpnFlqcAcRg2VjXAVt1CfaziK3uME0H972&#43;mwxNZuhA=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.acb54fd32bbc1982428b8850317e45d076b95012730a5936667e6bc21777692a.js" integrity="sha256-rLVP0yu8GYJCi4hQMX5F0Ha5UBJzClk2Zn5rwhd3aSo="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://ltltlt.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://ltltlt.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://ltltlt.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://ltltlt.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://ltltlt.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
 
-<meta name="theme-color" content="#f8f5ec" />
-<meta name="msapplication-navbutton-color" content="#f8f5ec">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
 
+            .list {
+                background: var(--theme);
+            }
 
-<meta name="author" content="ltltlt" /><meta name="description" content="Why Sometimes, you may want your program use one specific net device, because your net devices have different network access abilities.
-" /><meta name="keywords" content="ltltlt, blog" />
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
 
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
 
-
-
-
-
-<meta name="generator" content="Hugo 0.56.0-DEV with even 4.0.0" />
-
-
-<link rel="canonical" href="https://ltltlt.github.io/post/different-program-use-different-net-link-under-linux/" />
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/manifest.json">
-<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-
-<script src="https://cdn.jsdelivr.net/npm/eruda@1.2.6/eruda.min.js" integrity="sha256-Jmz4bc3kp+rRrXX2tGadNBKFLwtzMapr8kHABxSAAP8=" crossorigin="anonymous"></script>
-<script>eruda.init();</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
-
-
-<meta property="og:title" content="Different program use different net link under Linux" />
+    </style>
+</noscript><meta property="og:title" content="Different program use different net link under Linux" />
 <meta property="og:description" content="Why
-
 Sometimes, you may want your program use one specific net device, because your net devices have different network access abilities." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://ltltlt.github.io/post/different-program-use-different-net-link-under-linux/" />
-<meta property="article:published_time" content="2018-12-08T00:00:00+00:00" />
-<meta property="article:modified_time" content="2018-12-08T00:00:00+00:00" />
+<meta property="og:url" content="https://ltltlt.github.io/post/different-program-use-different-net-link-under-linux/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2018-12-08T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2018-12-08T00:00:00&#43;00:00" />
 
-<meta itemprop="name" content="Different program use different net link under Linux">
-<meta itemprop="description" content="Why
-
-Sometimes, you may want your program use one specific net device, because your net devices have different network access abilities.">
-
-
-<meta itemprop="datePublished" content="2018-12-08T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2018-12-08T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="568">
-
-
-
-<meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Different program use different net link under Linux"/>
 <meta name="twitter:description" content="Why
-
 Sometimes, you may want your program use one specific net device, because your net devices have different network access abilities."/>
 
-<!--[if lte IE 9]>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
-<![endif]-->
 
-<!--[if lt IE 9]>
-  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
-<![endif]-->
-
-</head>
-<body>
-  <div id="mobile-navbar" class="mobile-navbar">
-  <div class="mobile-header-logo">
-    <a href="/" class="logo">Even</a>
-  </div>
-  <div class="mobile-navbar-icon">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-</div>
-<nav id="mobile-menu" class="mobile-menu slideout-menu">
-  <ul class="mobile-menu-list">
-    <a href="/">
-        <li class="mobile-menu-item">Home</li>
-      </a><a href="/post/">
-        <li class="mobile-menu-item">Archives</li>
-      </a><a href="/tags/">
-        <li class="mobile-menu-item">Tags</li>
-      </a><a href="/categories/">
-        <li class="mobile-menu-item">Categories</li>
-      </a><a href="/poem/">
-        <li class="mobile-menu-item">Poems</li>
-      </a><a href="/about/">
-        <li class="mobile-menu-item">About</li>
-      </a>
-  </ul>
-</nav>
-  <div class="container" id="mobile-panel">
-    <header id="header" class="header">
-        <div class="logo-wrapper">
-  <a href="/" class="logo">Even</a>
-</div>
-
-<nav class="site-navbar">
-  <ul id="menu" class="menu">
-    <li class="menu-item">
-        <a class="menu-item-link" href="/">Home</a>
-      </li><li class="menu-item">
-        <a class="menu-item-link" href="/post/">Archives</a>
-      </li><li class="menu-item">
-        <a class="menu-item-link" href="/tags/">Tags</a>
-      </li><li class="menu-item">
-        <a class="menu-item-link" href="/categories/">Categories</a>
-      </li><li class="menu-item">
-        <a class="menu-item-link" href="/poem/">Poems</a>
-      </li><li class="menu-item">
-        <a class="menu-item-link" href="/about/">About</a>
-      </li>
-  </ul>
-</nav>
-    </header>
-
-    <main id="main" class="main">
-      <div class="content-wrapper">
-        <div id="content" class="content">
-          <article class="post">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Posts",
+      "item": "https://ltltlt.github.io/post/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Different program use different net link under Linux",
+      "item": "https://ltltlt.github.io/post/different-program-use-different-net-link-under-linux/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Different program use different net link under Linux",
+  "name": "Different program use different net link under Linux",
+  "description": "Why Sometimes, you may want your program use one specific net device, because your net devices have different network access abilities.\n",
+  "keywords": [
     
-    <header class="post-header">
-      <h1 class="post-title">Different program use different net link under Linux</h1>
+  ],
+  "articleBody": "Why Sometimes, you may want your program use one specific net device, because your net devices have different network access abilities.\nFor me, I have two demands:\nI want to use IRC in company network, and i don’t want company to know that(i need to connect to irc.freenode.net, and IRC uses unique(?) data). But for some program, it need company’s network to access company’s intranet. Almost all traffic in my home go through VPS, but sometimes i need to download BT resources, these traffic cannot go through, since my VPS have flow limitation and not welcome BT. What The approach mentioned here can let different program use different net link. Some programs can use company’s intranet, other programs don’t. All my work is done under Archlinux, you can easily change it to other linux distributions, but not Windows, if you need to do this under Windows, you may need to check reference of this post.\nHow Add a net namespace 1 ip netns add $netns Add net link to namespace If you use wired device\n1 ip link set $net_link netns $netns If you use wireless device\n1 iw phy $phy set netns name $netns # you can check your $phy using command `iw list` “Into” this net namespace 1 ip netns exec $netns sudo -u $your_user_name bash # i use zsh Check if net link added to this net namespace successfully 1 ip link Connect to wifi(if you use wireless net link) 1 wpa_supplicant -i $net_link -c $wpa_supplicant_config_file \u0026 Note that all commands below is execute under this net namespace\nBind a network address Since dhcpcd(or dhcpclient) cannot work under net namespace(I cannot, maybe you can, use dhcpcd $net_link then ifconfig to check if this net link have a address now), i need to bind a address for it manually.\n1 ifconfig $net_link $ip Check if you can access the extranet 1 ping 8.8.8.8 If you cannot, you may need to set route use following command:\n1 route add default gw $gateway $net_link Check if dns look up works well 1 dig www.google.com # or just `ping www.google.com` If ping success, you done. If not, you may need to change dns server manually.(the reason is quite simple, your dns server is mostly point to gateway, but different net link have different gateway address, it can be 192.168.1.1 or 172.17.1.1 or whatever, if your dns lookup fail, it may because your dns server change)\nChange dns server if necessary Since your dns server is written in /etc/resolve.conf, you may want to change it directly, but it won’t work, because dhcpcd will overwrite it. Different linux distribution have different approach to solve this. Under Archlinux, you can edit /etc/resolve.conf.head, add nameserver 8.8.8.8 or something whatever like this into it.\nAfter all this, you mostly done You may need to check using curl ip.sb to see if your ip address change.\nForeign link(reference) This post is mostly based on this answer. Check this answer for another approach(I use this approach but for some reason this doesn’t work). This post tells me a lot about linux net namespace. This answer helps me to add a wireless net link into net namespace. Archwiki gives me hint about how to change dns server. For how to connect to a wifi under linux terminal or more wireless network configuration, you may need to check this, this link helps me a lot of time too.\n",
+  "wordCount" : "568",
+  "inLanguage": "zh-cn",
+  "datePublished": "2018-12-08T00:00:00Z",
+  "dateModified": "2018-12-08T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://ltltlt.github.io/post/different-program-use-different-net-link-under-linux/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "ltltlt's blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://ltltlt.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
 
-      <div class="post-meta">
-        <span class="post-time"> 2018-12-08 </span>
-        <div class="post-category">
-            <a href="/categories/nginx/"> Nginx </a>
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://ltltlt.github.io" accesskey="h" title="ltltlt&#39;s blog (Alt + H)">ltltlt&#39;s blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
             </div>
-        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
-      </div>
-    </header>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://ltltlt.github.io/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://ltltlt.github.io/post/" title="Archives">
+                    <span>Archives</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://ltltlt.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://ltltlt.github.io/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://ltltlt.github.io/poem/" title="Poems">
+                    <span>Poems</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://ltltlt.github.io/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
 
-    <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">文章目录</h2>
-  <div class="post-toc-content always-active">
-    <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#why">Why</a></li>
-<li><a href="#what">What</a></li>
-<li><a href="#how">How</a>
-<ul>
-<li><a href="#add-a-net-namespace">Add a net namespace</a></li>
-<li><a href="#add-net-link-to-namespace">Add net link to namespace</a></li>
-<li><a href="#into-this-net-namespace">&ldquo;Into&rdquo; this net namespace</a></li>
-<li><a href="#check-if-net-link-added-to-this-net-namespace-successfully">Check if net link added to this net namespace successfully</a></li>
-<li><a href="#connect-to-wifi-if-you-use-wireless-net-link">Connect to wifi(if you use wireless net link)</a></li>
-<li><a href="#bind-a-network-address">Bind a network address</a></li>
-<li><a href="#check-if-you-can-access-the-extranet">Check if you can access the extranet</a></li>
-<li><a href="#check-if-dns-look-up-works-well">Check if dns look up works well</a></li>
-<li><a href="#change-dns-server-if-necessary">Change dns server if necessary</a></li>
-<li><a href="#after-all-this-you-mostly-done">After all this, you mostly done</a></li>
-</ul></li>
-<li><a href="#foreign-link-reference">Foreign link(reference)</a></li>
-</ul></li>
-</ul>
-</nav>
-  </div>
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      Different program use different net link under Linux
+    </h1>
+    <div class="post-meta"><span title='2018-12-08 00:00:00 +0000 UTC'>December 8, 2018</span>
+
 </div>
-    <div class="post-content">
-      <h2 id="why">Why</h2>
-
+  </header> 
+  <div class="post-content"><h2 id="why">Why<a hidden class="anchor" aria-hidden="true" href="#why">#</a></h2>
 <p>Sometimes, you may want your program use one specific net device, because your net devices have different network access abilities.</p>
-
 <p>For me, I have two demands:</p>
-
 <ol>
 <li>I want to use IRC in company network, and i don&rsquo;t want company to know that(i need to connect to irc.freenode.net, and IRC uses unique(?) data). But for some program, it need company&rsquo;s network to access company&rsquo;s intranet.</li>
 <li>Almost all traffic in my home go through VPS, but sometimes i need to download BT resources, these traffic cannot go through, since my VPS have flow limitation and not welcome BT.</li>
 </ol>
-
-<h2 id="what">What</h2>
-
+<h2 id="what">What<a hidden class="anchor" aria-hidden="true" href="#what">#</a></h2>
 <p>The approach mentioned here can let different program use different net link. Some programs can use company&rsquo;s intranet, other programs don&rsquo;t. All my work is done under Archlinux, you can easily change it to other linux distributions, but not Windows, if you need to do this under Windows, you may need to check reference of this post.</p>
-
-<h2 id="how">How</h2>
-
-<h3 id="add-a-net-namespace">Add a net namespace</h3>
+<h2 id="how">How<a hidden class="anchor" aria-hidden="true" href="#how">#</a></h2>
+<h3 id="add-a-net-namespace">Add a net namespace<a hidden class="anchor" aria-hidden="true" href="#add-a-net-namespace">#</a></h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh"><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh">ip netns add <span class="nv">$netns</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">ip netns add <span class="nv">$netns</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="add-net-link-to-namespace">Add net link to namespace</h3>
-
+</div><h3 id="add-net-link-to-namespace">Add net link to namespace<a hidden class="anchor" aria-hidden="true" href="#add-net-link-to-namespace">#</a></h3>
 <p>If you use wired device</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh"><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh">ip link <span class="nb">set</span> <span class="nv">$net_link</span> netns <span class="nv">$netns</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">ip link <span class="nb">set</span> <span class="nv">$net_link</span> netns <span class="nv">$netns</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div>
-<p>If you use wireless device</p>
+</div><p>If you use wireless device</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh"><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh">iw phy <span class="nv">$phy</span> <span class="nb">set</span> netns name <span class="nv">$netns</span>    <span class="c1"># you can check your $phy using command `iw list`</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">iw phy <span class="nv">$phy</span> <span class="nb">set</span> netns name <span class="nv">$netns</span>    <span class="c1"># you can check your $phy using command `iw list`</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="into-this-net-namespace">&ldquo;Into&rdquo; this net namespace</h3>
+</div><h3 id="into-this-net-namespace">&ldquo;Into&rdquo; this net namespace<a hidden class="anchor" aria-hidden="true" href="#into-this-net-namespace">#</a></h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh"><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh">ip netns <span class="nb">exec</span> <span class="nv">$netns</span> sudo -u <span class="nv">$your_user_name</span> bash    <span class="c1"># i use zsh</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">ip netns <span class="nb">exec</span> <span class="nv">$netns</span> sudo -u <span class="nv">$your_user_name</span> bash    <span class="c1"># i use zsh</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="check-if-net-link-added-to-this-net-namespace-successfully">Check if net link added to this net namespace successfully</h3>
+</div><h3 id="check-if-net-link-added-to-this-net-namespace-successfully">Check if net link added to this net namespace successfully<a hidden class="anchor" aria-hidden="true" href="#check-if-net-link-added-to-this-net-namespace-successfully">#</a></h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh"><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh">ip link</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">ip link
+</span></span></code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="connect-to-wifi-if-you-use-wireless-net-link">Connect to wifi(if you use wireless net link)</h3>
+</div><h3 id="connect-to-wifiif-you-use-wireless-net-link">Connect to wifi(if you use wireless net link)<a hidden class="anchor" aria-hidden="true" href="#connect-to-wifiif-you-use-wireless-net-link">#</a></h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh"><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh">wpa_supplicant -i <span class="nv">$net_link</span> -c <span class="nv">$wpa_supplicant_config_file</span> <span class="p">&amp;</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">wpa_supplicant -i <span class="nv">$net_link</span> -c <span class="nv">$wpa_supplicant_config_file</span> <span class="p">&amp;</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div>
-<p>Note that all commands below is execute under this net namespace</p>
-
-<h3 id="bind-a-network-address">Bind a network address</h3>
-
+</div><p>Note that all commands below is execute under this net namespace</p>
+<h3 id="bind-a-network-address">Bind a network address<a hidden class="anchor" aria-hidden="true" href="#bind-a-network-address">#</a></h3>
 <p>Since dhcpcd(or dhcpclient) cannot work under net namespace(I cannot, maybe you can, use <code>dhcpcd $net_link</code> then <code>ifconfig</code> to check if this net link have a address now), i need to bind a address for it manually.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh"><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh">ifconfig <span class="nv">$net_link</span> <span class="nv">$ip</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">ifconfig <span class="nv">$net_link</span> <span class="nv">$ip</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="check-if-you-can-access-the-extranet">Check if you can access the extranet</h3>
+</div><h3 id="check-if-you-can-access-the-extranet">Check if you can access the extranet<a hidden class="anchor" aria-hidden="true" href="#check-if-you-can-access-the-extranet">#</a></h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh"><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh">ping <span class="m">8</span>.8.8.8</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">ping 8.8.8.8
+</span></span></code></pre></td></tr></table>
 </div>
-</div>
-<p>If you cannot, you may need to set route use following command:</p>
+</div><p>If you cannot, you may need to set route use following command:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh"><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh">route add default gw <span class="nv">$gateway</span> <span class="nv">$net_link</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">route add default gw <span class="nv">$gateway</span> <span class="nv">$net_link</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="check-if-dns-look-up-works-well">Check if dns look up works well</h3>
+</div><h3 id="check-if-dns-look-up-works-well">Check if dns look up works well<a hidden class="anchor" aria-hidden="true" href="#check-if-dns-look-up-works-well">#</a></h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh"><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-zsh" data-lang="zsh">dig www.google.com    <span class="c1"># or just `ping www.google.com`</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">dig www.google.com    <span class="c1"># or just `ping www.google.com`</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div>
-<p>If ping success, you done. If not, you may need to change dns server manually.(the reason is quite simple, your dns server is mostly point to gateway, but different net link have different gateway address, it can be 192.168.1.1 or 172.17.1.1 or whatever, if your dns lookup fail, it may because your dns server change)</p>
-
-<h3 id="change-dns-server-if-necessary">Change dns server if necessary</h3>
-
+</div><p>If ping success, you done. If not, you may need to change dns server manually.(the reason is quite simple, your dns server is mostly point to gateway, but different net link have different gateway address, it can be 192.168.1.1 or 172.17.1.1 or whatever, if your dns lookup fail, it may because your dns server change)</p>
+<h3 id="change-dns-server-if-necessary">Change dns server if necessary<a hidden class="anchor" aria-hidden="true" href="#change-dns-server-if-necessary">#</a></h3>
 <p>Since your dns server is written in /etc/resolve.conf, you may want to change it directly, but it won&rsquo;t work, because dhcpcd will overwrite it. Different linux distribution have different approach to solve this. Under Archlinux, you can edit /etc/resolve.conf.head, add <code>nameserver 8.8.8.8</code> or something whatever like this into it.</p>
-
-<h3 id="after-all-this-you-mostly-done">After all this, you mostly done</h3>
-
+<h3 id="after-all-this-you-mostly-done">After all this, you mostly done<a hidden class="anchor" aria-hidden="true" href="#after-all-this-you-mostly-done">#</a></h3>
 <p>You may need to check using <code>curl ip.sb</code> to see if your ip address change.</p>
-
-<h2 id="foreign-link-reference">Foreign link(reference)</h2>
-
+<h2 id="foreign-linkreference">Foreign link(reference)<a hidden class="anchor" aria-hidden="true" href="#foreign-linkreference">#</a></h2>
 <p>This post is mostly based on <a href="https://unix.stackexchange.com/questions/210982/bind-unix-program-to-specific-network-interface#answer-210992">this answer</a>.
 Check <a href="https://superuser.com/questions/241178/how-to-use-different-network-interfaces-for-different-processes#answer-241200">this answer</a> for another approach(I use this approach but for some reason this doesn&rsquo;t work).
 <a href="https://cizixs.com/2017/02/10/network-virtualization-network-namespace/">This post</a> tells me a lot about linux net namespace.
 <a href="https://superuser.com/questions/653996/how-to-move-wireless-connection-to-other-network-namespace#answer-901438">This answer</a> helps me to add a wireless net link into net namespace.
 <a href="https://wiki.archlinux.org/index.php/Resolv.conf_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)">Archwiki</a> gives me hint about how to change dns server.
 For how to connect to a wifi under linux terminal or more wireless network configuration, you may need to check <a href="https://wiki.archlinux.org/index.php/Wireless_network_configuration">this</a>, <a href="https://linux.cn/article-4015-1.html">this link</a> helps me a lot of time too.</p>
-    </div>
 
-    <div class="post-copyright">
-  <p class="copyright-item">
-    <span class="item-title">文章作者</span>
-    <span class="item-content">ltltlt</span>
-  </p>
-  <p class="copyright-item">
-    <span class="item-title">上次更新</span>
-    <span class="item-content">
-        2018-12-08
-        
-    </span>
-  </p>
-  
-  
-</div>
-<footer class="post-footer">
-      
-      <nav class="post-nav">
-        
-        <a class="next" href="/post/nginx-rewrite-last-break-or-default/">
-            <span class="next-text nav-default">Nginx rewrite: last, break or default</span>
-            <span class="next-text nav-mobile">下一篇</span>
-            <i class="iconfont icon-right"></i>
-          </a>
-      </nav>
-    </footer>
-  </article>
-        </div>
-        <div id="disqus_thread"></div>
-    <script type="text/javascript">
-    (function() {
-      
-      
-      if (window.location.hostname === 'localhost') return;
+  </div>
 
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      var disqus_shortname = 'ltltlt-github-io';
-      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
-      </div>
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
     </main>
-
-    <footer id="footer" class="footer">
-      <div class="social-links">
-      <a href="liuty196888@gmail.com" class="iconfont icon-email" title="email"></a>
-      <a href="https://stackoverflow.com/users/5020243/lty" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
-      <a href="https://github.com/ltltlt" class="iconfont icon-github" title="github"></a>
-  <a href="https://ltltlt.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
-</div>
-
-<div class="copyright">
-  <span class="power-by">
-    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
-  </span>
-  <span class="division">|</span>
-  <span class="theme-info">
-    主题 - 
-    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
-  </span>
-
-  <div class="busuanzi-footer">
-    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
-      <span class="division">|</span>
-    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
-  </div>
-
-  <span class="copyright-year">
-    &copy; 
-    2018 - 
-    2019
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
+    
+<footer class="footer">
+    <span>&copy; 2022 <a href="https://ltltlt.github.io">ltltlt&#39;s blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
     </span>
-    <span class="author">ltltlt</span>
-  </span>
-</div>
-    </footer>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
 
-    <div class="back-to-top" id="back-to-top">
-      <i class="iconfont icon-up"></i>
-    </div>
-  </div>
-  
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
 
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
 
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
 
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
 
-
-
-
-
+</script>
 </body>
+
 </html>
