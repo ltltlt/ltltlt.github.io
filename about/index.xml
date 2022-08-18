@@ -1,24 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title>Abouts on ltltlt&#39;s blog</title>
-    <link>https://ltltlt.github.io/about/</link>
-    <description>Recent content in Abouts on ltltlt&#39;s blog</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language>
-    <lastBuildDate>Thu, 21 Jun 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://ltltlt.github.io/about/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>About</title>
-      <link>https://ltltlt.github.io/about/about/</link>
-      <pubDate>Thu, 21 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://ltltlt.github.io/about/about/</guid>
-      <description>About me Who
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Abouts on ltltlt's blog</title><link>https://ltltlt.github.io/about/</link><description>Recent content in Abouts on ltltlt's blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 21 Jun 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://ltltlt.github.io/about/index.xml" rel="self" type="application/rss+xml"/><item><title>About</title><link>https://ltltlt.github.io/about/about/</link><pubDate>Thu, 21 Jun 2018 00:00:00 +0000</pubDate><guid>https://ltltlt.github.io/about/about/</guid><description>About me Who
 Poet Programmer From
 Suzhou, China Computer
 ChromeBook Editor
-Vim Visual Studio Code About this blog Purpose Writing down my feeling about this world. Writing down some technic i would like to share. Writing down some experience. When i start 2018-06-20 </description>
-    </item>
-    
-  </channel>
-</rss>
+Vim Visual Studio Code About this blog Purpose Writing down my feeling about this world. Writing down some technic i would like to share. Writing down some experience. When i start 2018-06-20</description></item></channel></rss>
